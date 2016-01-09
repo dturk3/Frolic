@@ -18,3 +18,10 @@ if (typeof jQuery !== 'undefined') {
 		});
 	})(jQuery);
 }
+
+$('.btn-group-vertical button').click(function()
+{
+	console.log(this);
+    $(this).parent().children().removeClass('active');
+    $(this).addClass('active');
+});
