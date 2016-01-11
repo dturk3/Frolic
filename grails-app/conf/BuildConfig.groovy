@@ -38,19 +38,24 @@ grails.project.dependency.resolution = {
         grailsPlugins()
         grailsHome()
         mavenLocal()
-        grailsCentral()
         mavenCentral()
+        grailsCentral()
+		mavenRepo 'https://raw.github.com/fernandezpablo85/scribe-java/mvn-repo/'
+        mavenRepo "http://dl.bintray.com/desirable-objects/grails-plugins"
+		mavenRepo "http://repo.desirableobjects.co.uk/"
+		
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
+//        mavenRepo "http://repository.codehaus.org"
+//        mavenRepo "http://download.java.net/maven/2/"
+//        mavenRepo "http://repository.jboss.com/maven2/"
     }
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        // runtime 'mysql:mysql-connector-java:5.1.29'
+		// runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
-        test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+		compile 'org.scribe:scribe:1.3.2'
+		test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
     }
 
     plugins {
@@ -62,6 +67,7 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.8'
         compile ":asset-pipeline:1.9.9"
 		compile "org.grails.plugins:rest:0.8"
+		compile ":oauth:2.6.1"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.6.1" // or ":hibernate:3.6.10.18"

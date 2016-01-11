@@ -179,7 +179,7 @@
 	                </table>
                 </div>
                 <br><br>
-                <g:form>
+                <g:form controller="frolic" action="index" >
                     <g:hiddenField name="location" value=""/>
                     <g:hiddenField name="type" value=""/>
                     <g:hiddenField name="time" value=""/>
