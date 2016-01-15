@@ -5,6 +5,7 @@ class FrolicController {
 	FrolicService frolicService
 		
     def index() { 
-		frolicService.test()
+		def results = frolicService.searchYelp("tacos", "grange park toronto", "43.7000", "79.4000", 800, 5)
+		println results
 	}
 }
