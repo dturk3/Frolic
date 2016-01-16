@@ -1,14 +1,15 @@
 package frolic;
 
+import org.apache.commons.lang.StringUtils;
 import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.DefaultApi10a;
-import org.scribe.builder.api.DefaultApi20;
 import org.scribe.builder.api.TwitterApi;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
+
+import frolic.parameter.YelpSortMode;
 
 public class YelpApi {
 	private static final String API_HOST = "api.yelp.com";
@@ -30,13 +31,26 @@ public class YelpApi {
 		this.accessToken = new Token(TOKEN, TOKEN_SECRET);
 	}
 
-	public String searchForBusinessesByLocation(String term, String location, String lon, String lat, int radiusMetres) {
+	public String searchForBusinessesByLocation(String term, String location, String lon, String lat, int radiusMetres, YelpSortMode sortMode, String categories) {
 		final OAuthRequest request = createOAuthRequest(SEARCH_PATH);
-		request.addQuerystringParameter("term", term);
-		request.addQuerystringParameter("cll", lat + "," + lon);
-		request.addQuerystringParameter("location", location);
+		if (!StringUtils.isBlank(term)) {
+			request.addQuerystringParameter("term", term);
+		}
+		if (!StringUtils.isBlank(lat) && !StringUtils.isBlank(lon)) {
+			request.addQuerystringParameter("cll", lat + "," + lon);
+		}
+		if (!StringUtils.isBlank(location)) {
+			request.addQuerystringParameter("location", location);
+		}
 		request.addQuerystringParameter("limit", String.valueOf(SEARCH_LIMIT));
 		request.addQuerystringParameter("radius_filter", String.valueOf(radiusMetres));
+		
+		if (sortMode != null) {
+			request.addQuerystringParameter("sort", String.valueOf(sortMode.getValue()));
+		}
+		if (!StringUtils.isBlank(categories)) {
+			request.addQuerystringParameter("categories", categories);
+		}
 		return sendRequestAndGetResponse(request);
 	}
 

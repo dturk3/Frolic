@@ -22,6 +22,8 @@ class Place {
 	
 	static hasMany = [tags: String]
 	
+	static belongsTo = [frolic: Frolic]
+	
     static constraints = {
     }
 	
