@@ -8,17 +8,26 @@ class Frolic {
 	Integer downvotes
 	Boolean isPublic
 	
-	static create() {
-		Frolic instance = Frolic.create()
-		instance.creationDate = new Date()
-		instance.upvotes = 0
-		instance.downvotes = 0
-		instance.isPublic = true
-		instance.permalink = Util.generateStringOfLength(8)
+	List place
+	
+	Frolic() {
+		permalink = Util.generateStringOfLength(8)
+		
+		creationDate = new Date()
+		upvotes = 0
+		downvotes = 0
+		isPublic = true
 	}
 	
-	static hasMany = [places: Place]
+	static hasMany = [place: Place]
 
     static constraints = {
     }
+	
+	static mapping = {
+		creationDate defaultValue: "now()"
+		upvotes defaultValue: 0
+		downvotes defaultValue: 0
+		isPublic defaultValue: true
+	}
 }

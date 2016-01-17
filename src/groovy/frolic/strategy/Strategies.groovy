@@ -168,7 +168,7 @@ class Strategies {
 			
 			Frolic frolic = new Frolic()
 			(0..maxResults).each {
-				frolic.addToPlaces(popRandomFromList(placesList))
+				frolic.addToPlace(popRandomFromList(placesList))
 			}
 			frolic.save()
 			return frolic

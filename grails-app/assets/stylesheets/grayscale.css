@@ -395,3 +395,8 @@ th {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
+#changeLocationButton {
+  background-color: slategrey;
+  border: 1px solid white;
+}

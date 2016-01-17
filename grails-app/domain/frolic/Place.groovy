@@ -20,11 +20,14 @@ class Place {
 	int upvotes
 	int downvotes
 	
+	List tags
+	
 	static hasMany = [tags: String]
 	
-	static belongsTo = [frolic: Frolic]
-	
     static constraints = {
+		imageUrl blank: false, nullable: true
+		link blank: false, nullable: true
+		phone blank: false, nullable: true
     }
 	
 	static mapping = {

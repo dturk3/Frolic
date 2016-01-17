@@ -28,22 +28,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <style>
-		.intro {
-			display: table;
-			width: 100%;
-			height: auto;
-			padding: 220px 0;
-			text-align: center;
-			color: #fff;
-			background: url(${resource(dir: 'images', file: 'toronto.jpg')}) no-repeat bottom center scroll;
-			background-color: #000;
-			-webkit-background-size: cover;
-			-moz-background-size: cover;
-			background-size: cover;
-			-o-background-size: cover;
-		}
-    </style>
+    <frolic:cityIntro city="${ city }" neighbourhood="${ neighbourhood }"></frolic:cityIntro>
     
 </head>
 
@@ -100,12 +85,21 @@
                         <h1 class="brand-heading">${ city }</h1>
                         <h2 class="intro-text">${ neighbourhood }</h2>
                         <p class="intro-text">Let us choose your adventure.</p>
-                        <div class="input-group input-group-lg">
-						  <span class="input-group-addon" id="sizing-addon1">
-						      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-						  </span>
-						  <input type="text" class="form-control" placeholder="Address, city, or postal code" aria-describedby="sizing-addon1">
-						</div>
+                        <g:form controller="entry" action="geolocate">
+                            <g:hiddenField name="lon" value="${ lon }" />
+                            <g:hiddenField name="lat" value="${ lat }" />
+                        
+	                        <div class="input-group input-group-lg">
+							  <span class="input-group-addon" id="sizing-addon1">
+							      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+							  </span>
+							  <input name="newLocation" type="text" class="form-control" placeholder="Address, city, or postal code" aria-describedby="sizing-addon1">
+							</div>
+							<br>
+							<button type="submit" class="btn btn-custom" aria-label="Fly" id="changeLocationButton">
+								<span class="glyphicon glyphicon-plane" aria-hidden="true"></span>&nbsp;&nbsp;Change Location
+							</button>
+						</g:form>
                         
                         <a href="#about" class="btn btn-circle page-scroll">
                             <span style="font-size: 24px" class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>

@@ -17,5 +17,9 @@ class GeocodeResponse {
 				neighbourhood = component.long_name
 			}
 		}
+	}
+	@Override
+	public String toString() {
+		return neighbourhood + ", " + city + " (" + longitude + ", " + latitude + ")"
 	}	
 }
