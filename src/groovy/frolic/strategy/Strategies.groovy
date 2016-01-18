@@ -89,7 +89,7 @@ class Strategies {
 				(Duration.ONESTOP): 1,
 				(Duration.BRIEF): randomNumber(2, 3),
 				(Duration.TYPICAL): randomNumber(3, 5),
-				(Duration.MARATHON): randomNumber(6, 8)
+				(Duration.MARATHON): randomNumber(6, 7)
 			]
 			
 			Map categoriesStrategy = [
@@ -112,7 +112,6 @@ class Strategies {
 					"sportsbars",
 				],
 				(TimeOfDay.EVENING): [
-					"beer_and_wine",
 					"beverage_stores",
 					"distilleries",
 					"bars",
@@ -142,7 +141,7 @@ class Strategies {
 				],
 			]
 			
-			int numCategories = randomNumber(0, 3)
+			int numCategories = randomNumber(0, 2)
 			
 			List categoryList = []
 			(0..numCategories).each {
@@ -153,10 +152,11 @@ class Strategies {
 
 			int radius = radiusStrategy.get(distance)
 			String term = popRandomFromList(termsStrategy.get(time))
-			int maxResults = durationStrategy.get(duration)
+			Integer maxResults = Math.max(durationStrategy.get(duration), 8)
 			YelpSortMode sortOrder = popRandomFromList(sortStrategy) 
 			String categories = categoryList.join(",")
 
+			println maxResults
 			List places = []			
 			(0..yelpCalls).each {
 				places.addAll(frolicService.searchYelp(term, location, lon, lat, radius, maxResults, sortOrder, categories))
@@ -164,13 +164,22 @@ class Strategies {
 			
 			Set uniquePlaces = places.unique()
 			
-			List placesList = uniquePlaces.toList()
+			List placesList = uniquePlaces.toList().subList(0, Math.max(Math.min(maxResults, 8), uniquePlaces.size()))
 			
 			Frolic frolic = new Frolic()
 			frolic.setCentreLon(lon)
 			frolic.setCentreLat(lat)
-			(0..maxResults).each {
-				frolic.addToPlace(popRandomFromList(placesList))
+			frolic.setLocation(location)
+			if (!placesList) {
+				frolic.save()
+				return frolic
+			}
+			(1..maxResults).each {
+				def nextPlace = popRandomFromList(placesList)
+				if (nextPlace) {
+					frolic.addToPlace(nextPlace)
+					println "ADDED PLACE: " + nextPlace
+				}
 			}
 			frolic.save()
 			return frolic
@@ -202,8 +211,12 @@ class Strategies {
 	}
 	
 	def popRandomFromList(List l) {
-		if (l.isEmpty()) {
+		if (!l) {
 			return null
+		}
+		
+		if (l.size() == 1) {
+			return l.remove(0)
 		}
 		return l.remove(randomNumber(0, l.size() - 1))
 	}

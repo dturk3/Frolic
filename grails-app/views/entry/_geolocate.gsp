@@ -135,38 +135,38 @@
 	                    <tr>
 	                        <td>
 		                        <div id="type" class="btn-group-vertical" role="group" aria-label="...">
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">SURPRISE!</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">DRINK</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">EAT</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">DATE</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">TOURISM</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector active" value="surprise">SURPRISE!</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="drink">DRINK</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="eat">EAT</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="date">DATE</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="tourism">TOURISM</button>
 				                </div>
 	                        </td>
 	                        <td>
 	                            <div id="time" class="btn-group-vertical" role="group" aria-label="...">
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">RIGHT NOW!</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">MORNING</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">AFTERNOON</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">EVENING</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">LATE NIGHT</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector active" value="now">RIGHT NOW!</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="morning">MORNING</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="afternoon">AFTERNOON</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="evening">EVENING</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="latenight">LATE NIGHT</button>
 				                </div>
 	                        </td>
 	                        <td>
 	                            <div id="length" class="btn-group-vertical" role="group" aria-label="...">
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">DON'T CARE!</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">ONE-STOP</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">BRIEF</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">TYPICAL</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">MARATHON</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector active" value="any">DON'T CARE!</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="one">ONE-STOP</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="brief">BRIEF</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="typical">TYPICAL</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="marathon">MARATHON</button>
 				                </div>
 	                        </td>
 	                        <td>
 	                            <div id="distance" class="btn-group-vertical" role="group" aria-label="...">
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">ANYWHERE!</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">WALK</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">BIKE</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">TRANSIT</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector">DRIVE</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector active" value="any">ANYWHERE!</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="walk">WALK</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="bike">BIKE</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="transit">TRANSIT</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="drive">DRIVE</button>
 				                </div>
 	                        </td>
 	                    </tr>
@@ -174,15 +174,16 @@
                 </div>
                 <br><br>
                 <g:form controller="frolic" action="index" >
-                    <g:hiddenField name="location" value=""/>
-                    <g:hiddenField name="type" value=""/>
-                    <g:hiddenField name="time" value=""/>
-                    <g:hiddenField name="length" value=""/>
-                    <g:hiddenField name="distance" value=""/>
+                    <g:hiddenField name="location" value="${ neighbourhood + ' ' + city }"/>
+                    <g:hiddenField name="type" value="surprise"/>
+                    <g:hiddenField name="time" value="now"/>
+                    <g:hiddenField name="length" value="any"/>
+                    <g:hiddenField name="distance" value="any"/>
+                    <g:hiddenField name="lon" value="${ lon }"/>
+                    <g:hiddenField name="lat" value="${ lat }"/>
                     
                     <g:submitButton name="frolic" value="Let's Frolic!" class="btn btn-default"/>
                 </g:form>
-                
             </div>
         </div>
     </section>
@@ -242,7 +243,18 @@
     <!-- Custom Theme JavaScript -->
     <asset:javascript src="grayscale.js"/>
     
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPceR651kX-G401Wi-dloiOXOPCta1cvo"></script>
+    
     <asset:javascript src="application.js"/>
+    
+    <script>
+	    $("button").click(function() {
+	        $("input[name='type']").val($("#type .active").val());
+	        $("input[name='time']").val($("#time .active").val());    
+	        $("input[name='length']").val($("#length .active").val());    
+	        $("input[name='distance']").val($("#distance .active").val());    
+	    });
+    </script>
 
 </body>
 

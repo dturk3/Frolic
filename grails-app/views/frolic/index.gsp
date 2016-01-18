@@ -34,7 +34,6 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-	<div id="map"></div>
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -71,7 +70,9 @@
 	<header class="intro">
 		<div class="intro-body">
 			<div class="container">
-				<div class="row"></div>
+				<div class="row">
+				    <div id="map"></div>
+				</div>
 			</div>
 		</div>
 	</header>
@@ -81,104 +82,36 @@
 	<br>
 	<br>
 	<br>
+	<br>
+    <br>
+    <br>
+	<section id="empty" class="container content-section text-center">
+        <h2>NEAR ${ frolic.location }</h2>
+        <br>
+        <br>
+	</section>
     <g:hiddenField name="lon" value="" />
     <g:hiddenField name="lat" value="" />
 
 	<section id="places" class="container content-section text-center">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
-				<h2>Go Frolic!</h2>
-				<p>Just a few clicks, and we'll choose what you're doing next.</p>
-				<div class="frolic-selector">
-					<table>
-						<tr>
-							<th><span class="glyphicon glyphicon-ok-circle"
-								aria-hidden="true"></span>&nbsp;WHAT?</th>
-							<th><span class="glyphicon glyphicon-time"
-								aria-hidden="true"></span>&nbsp;WHEN?</th>
-							<th><span class="glyphicon glyphicon-chevron-right"
-								aria-hidden="true"></span>&nbsp;HOW LONG?</th>
-							<th><span class="glyphicon glyphicon-home"
-								aria-hidden="true"></span>&nbsp;HOW FAR?</th>
-						</tr>
-						<tr>
-							<td>
-								<div id="type" class="btn-group-vertical" role="group"
-									aria-label="...">
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">SURPRISE!</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">DRINK</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">EAT</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">DATE</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">TOURISM</button>
-								</div>
-							</td>
-							<td>
-								<div id="time" class="btn-group-vertical" role="group"
-									aria-label="...">
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">RIGHT NOW!</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">MORNING</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">AFTERNOON</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">EVENING</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">LATE NIGHT</button>
-								</div>
-							</td>
-							<td>
-								<div id="length" class="btn-group-vertical" role="group"
-									aria-label="...">
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">DON'T CARE!</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">ONE-STOP</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">BRIEF</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">TYPICAL</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">MARATHON</button>
-								</div>
-							</td>
-							<td>
-								<div id="distance" class="btn-group-vertical" role="group"
-									aria-label="...">
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">ANYWHERE!</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">WALK</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">BIKE</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">TRANSIT</button>
-									<button style="width: 120px" type="button"
-										class="btn btn-default btn-selector">DRIVE</button>
-								</div>
-							</td>
-						</tr>
-					</table>
-				</div>
-				<br>
-				<br>
-				<g:form controller="frolic" action="index">
-					<g:hiddenField name="location" value="" />
-					<g:hiddenField name="type" value="" />
-					<g:hiddenField name="time" value="" />
-					<g:hiddenField name="length" value="" />
-					<g:hiddenField name="distance" value="" />
-
-					<g:submitButton name="frolic" value="Let's Frolic!"
-						class="btn btn-default" />
-				</g:form>
-
-			</div>
+		<div class="row" id="placesRow">
+	      <g:each in="${ frolic.place }">
+	      <div class="col-md-4">
+               <div style="height: 300px" class="thumbnail">
+                 <g:if test="${ it.imageUrl }">
+		             <img style="border: 1px solid black" src="${ it.imageUrl }" alt="...">
+                 </g:if>
+                 <g:else>
+                     <div style="height:100px"></div>
+                 </g:else>
+	             <div class="caption">
+	               <h6>${ it.name }</h6>
+	               <p style="font-size: 14px;">${ it.address }</p>
+	               <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+	             </div>
+              </div>
+		  </div>
+	      </g:each>
 		</div>
 	</section>
 
@@ -246,8 +179,7 @@
 	<!-- Custom Theme JavaScript -->
 	<asset:javascript src="grayscale.js" />
 	
-	<script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPceR651kX-G401Wi-dloiOXOPCta1cvo"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPceR651kX-G401Wi-dloiOXOPCta1cvo"></script>
 
 	<asset:javascript src="application.js" />
 

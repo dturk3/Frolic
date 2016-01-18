@@ -57,7 +57,11 @@ function initMap() {
 			lat : 40.33,
 			lng : 150.644
 		},
-		zoom : 13
+		zoom : 13,
+		mapTypeControl: false,
+		overviewMapControl: false,
+		streetViewControl: false,
+		zoomControlOptions: {position: google.maps.ControlPosition.TOP_RIGHT, style: google.maps.ZoomControlStyle.LARGE},
 	});
 	var styles = [ {
 		"featureType" : "road",
@@ -184,7 +188,7 @@ function buildHighlights(points)
         
         var ratingString = "";
         for (var j = 1; j <= 5; j++) {
-        	if (j <= frolicResponse.place[j].rating) {
+        	if (j <= frolicResponse.place[i].rating) {
         		ratingString += '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
         		continue;
         	}
@@ -260,6 +264,12 @@ function handleDirections() {
 			directionsDisplay.setDirections(response);
 			console.log(directionsDisplay);
 		}
+		
+		if (status == google.maps.DirectionsStatus.ZERO_RESULTS) {
+			window.location("/frolic/index");
+			return;
+		}
+
 
 		for (var i = 0; i < response.routes[0].legs.length; i++) {
 			var leg = response.routes[0].legs[i];
@@ -274,6 +284,10 @@ function handleDirections() {
 }
 
 $(document).ready(function() {
+	$(".navbar-toggle").click(function(event) {
+	    $(".navbar-collapse").toggle('in');
+	});
+	
 	initMap();
 	$.ajax({
 		url : "/Frolic/frolic/get",

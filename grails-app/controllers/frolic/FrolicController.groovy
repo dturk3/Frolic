@@ -12,12 +12,47 @@ class FrolicController {
 		
     def index() { 
 		if (!params.permalink) {
-			Strategies strategies = new Strategies(frolicService, params.neighbourhood + " " + params.city, params.lon, params.lat)
+			Strategies strategies = new Strategies(frolicService, params.location, params.lon, params.lat)
 			
-			def frolic = strategies.DRINK.execute(TimeOfDay.EVENING, Duration.TYPICAL, Distance.WALK)
+			TimeOfDay time = [
+				"now": TimeOfDay.EVENING,
+				"morning": TimeOfDay.MORNING,
+				"afternoon": TimeOfDay.AFTERNOON,
+				"evening": TimeOfDay.EVENING,
+				"latenight": TimeOfDay.LATENIGHT
+			].get(params.time)
+			
+			Duration duration = [
+				"any": Duration.ANY,
+				"one": Duration.ONESTOP,
+				"brief": Duration.BRIEF,
+				"typical": Duration.TYPICAL,
+				"marathon": Duration.MARATHON
+			].get(params.length)
+			
+			Distance distance = [
+				"any": Distance.ANY,
+				"walk": Distance.WALK,
+				"bike": Distance.BIKE,
+				"transit": Distance.TRANSIT,
+				"drive": Distance.DRIVE
+			].get(params.distance)
+			
+			FrolicStrategy strategy = [
+				"surprise": strategies.DRINK,
+				"drink": strategies.DRINK,
+				"eat": strategies.DRINK,
+				"date": strategies.DRINK,
+				"tourism": strategies.DRINK
+			].get(params.type)
+			
+			def frolic = strategy.execute(time, duration, distance)
 			frolic.save(flush: true, failOnError: true)
 			return redirect(url: "/frolic/index/?permalink=" + frolic.permalink)
 		}
+		
+		Frolic frolic = Frolic.findByPermalink(params.permalink)
+		return [frolic: frolic]
 	}
 	
 	def get() {

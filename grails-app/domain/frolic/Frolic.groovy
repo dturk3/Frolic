@@ -7,8 +7,9 @@ class Frolic {
 	Integer upvotes
 	Integer downvotes
 	Boolean isPublic
-	String centreLon;
-	String centreLat;
+	String centreLon
+	String centreLat
+	String location
 	
 	List place
 	

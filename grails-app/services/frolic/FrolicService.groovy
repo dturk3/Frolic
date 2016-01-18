@@ -22,6 +22,7 @@ class FrolicService {
 				place.setCity(business.location?.city)
 				place.setCountry(business.location?.country_code)
 				place.setAddress(business.location?.display_address.join(" ").replace("\"", ""))
+				println business.location.coordinate
 				place.setLon(business.location?.coordinate?.longitude)
 				place.setLat(business.location?.coordinate?.latitude)
 				place.setLink(business.url)
