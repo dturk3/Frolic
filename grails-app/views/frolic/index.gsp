@@ -81,6 +81,9 @@
 	<br>
 	<br>
 	<br>
+    <g:hiddenField name="lon" value="" />
+    <g:hiddenField name="lat" value="" />
+
 	<section id="places" class="container content-section text-center">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
@@ -242,187 +245,12 @@
 
 	<!-- Custom Theme JavaScript -->
 	<asset:javascript src="grayscale.js" />
+	
+	<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPceR651kX-G401Wi-dloiOXOPCta1cvo"></script>
 
 	<asset:javascript src="application.js" />
 
-	<script>
-		var map;
-
-		var response;
-
-		$.ajax({
-			  url: "/Frolic/frolic/get",
-			  type: "get",
-			  data: {
-				  permalink: getParameter("permalink") 
-			  },
-			  success: function(response) {
-				  response = JSON.parse(response);
-			      console.log(response);
-			  },
-			  error: function(xhr) {
-			    //Do Something to handle error
-			  }
-		});
-
-		function initMap() {
-			map = new google.maps.Map(document.getElementById('map'), {
-				center : {
-					lat : -34.397,
-					lng : 150.644
-				},
-				zoom : 13
-			});
-			var styles = [ {
-				"featureType" : "road",
-				"elementType" : "labels",
-				"stylers" : [ {
-					"visibility" : "on"
-				} ]
-			}, {
-				"featureType" : "poi",
-				"stylers" : [ {
-					"visibility" : "off"
-				} ]
-			}, {
-				"featureType" : "administrative",
-				"stylers" : [ {
-					"visibility" : "off"
-				} ]
-			}, {
-				"featureType" : "road",
-				"elementType" : "geometry.fill",
-				"stylers" : [ {
-					"color" : "#000000"
-				}, {
-					"weight" : 1
-				} ]
-			}, {
-				"featureType" : "road",
-				"elementType" : "geometry.stroke",
-				"stylers" : [ {
-					"color" : "#000000"
-				}, {
-					"weight" : 0.8
-				} ]
-			}, {
-				"featureType" : "landscape",
-				"stylers" : [ {
-					"color" : "#ffffff"
-				} ]
-			}, {
-				"featureType" : "water",
-				"stylers" : [ {
-					"visibility" : "off"
-				} ]
-			}, {
-				"featureType" : "transit",
-				"stylers" : [ {
-					"visibility" : "off"
-				} ]
-			}, {
-				"elementType" : "labels",
-				"stylers" : [ {
-					"visibility" : "off"
-				} ]
-			}, {
-				"elementType" : "labels.text",
-				"stylers" : [ {
-					"visibility" : "on"
-				} ]
-			}, {
-				"elementType" : "labels.text.stroke",
-				"stylers" : [ {
-					"color" : "#ffffff"
-				} ]
-			}, {
-				"elementType" : "labels.text.fill",
-				"stylers" : [ {
-					"color" : "#000000"
-				} ]
-			}, {
-				"elementType" : "labels.icon",
-				"stylers" : [ {
-					"visibility" : "on"
-				} ]
-			} ];
-
-			map.setOptions({
-				styles : styles
-			});
-
-			
-		}
-
-		function calcRoute() {
-			  var start = document.getElementById("start").value;
-			  var end = document.getElementById("end").value;
-			  var request = {
-			    origin:start,
-			    destination:end,
-			    travelMode: google.maps.TravelMode.DRIVING
-			  };
-			  directionsService.route(request, function(result, status) {
-			    if (status == google.maps.DirectionsStatus.OK) {
-			      directionsDisplay.setDirections(result);
-			    }
-			  });
-			}
-
-	    $(document).ready(function(){
-	    var directionsDisplay = new google.maps.DirectionsRenderer();
-	    var directionsService = new google.maps.DirectionsService();
-	    var map;
-	    var points = [];
-	    var markers = [];
-
-	    function calcRoute() {
-	      var waypts = [];
-	      for (var i = 0; i < arguments.length; i++) {
-	          waypts.push({
-	              location:arguments[i],
-	              stopover:true});
-	    }
-
-	    var start = waypts[0]['location'];
-	    var end = waypts[waypts.length - 1]['location'];
-	    var stops = waypts.slice(1, waypts.length - 1);
-	    var request = {
-	        origin:start,
-	        destination:end,
-	        waypoints: stops,
-	        optimizeWaypoints: true,
-	        travelMode: google.maps.TravelMode.WALKING
-	    };
-	    directionsService.route(request, function(response, status) {
-	        var distanceMeters = 0;
-	        var durationSeconds = 0;
-	        for (var i = 0; i < response.routes[0].legs.length; i++) {
-	            var leg = response.routes[0].legs[i];
-	            distanceMeters += leg.distance.value;
-	            durationSeconds += leg.duration.value;
-	        }
-	        $("#id-distance").html((distanceMeters/1000).toFixed(1) + " km");
-	        var duration = secondsToTime(durationSeconds + (45*60)*waypts.length);
-	        $("#id-duration").html(duration.h + " h " + duration.m + " min");
-	        if (status == google.maps.DirectionsStatus.OK) {
-	             directionsDisplay.setDirections(response);
-	        }
-
-	        for (var i = 0; i < response.routes[0].legs.length; i++) {
-	            var leg = response.routes[0].legs[i];
-	            points.push(leg.start_location);
-	            if (i == response.routes[0].legs.length - 1) {
-	                points.push(leg.end_location);
-	            }
-	        }
-	        buildHighlights(points);
-	  });
-	}
-	</script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPceR651kX-G401Wi-dloiOXOPCta1cvo&callback=initMap"
-		async defer></script>
 
 </body>
 

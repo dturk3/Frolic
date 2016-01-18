@@ -12,7 +12,8 @@ class FrolicController {
 		
     def index() { 
 		if (!params.permalink) {
-			Strategies strategies = new Strategies(frolicService, "grange park toronto", "43.7000", "79.4000")
+			Strategies strategies = new Strategies(frolicService, params.neighbourhood + " " + params.city, params.lon, params.lat)
+			
 			def frolic = strategies.DRINK.execute(TimeOfDay.EVENING, Duration.TYPICAL, Distance.WALK)
 			frolic.save(flush: true, failOnError: true)
 			return redirect(url: "/frolic/index/?permalink=" + frolic.permalink)

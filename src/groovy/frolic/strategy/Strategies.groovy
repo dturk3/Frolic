@@ -85,11 +85,11 @@ class Strategies {
 			]
 			
 			Map durationStrategy = [
-				(Duration.ANY): randomNumber(1, 12),
+				(Duration.ANY): randomNumber(1, 8),
 				(Duration.ONESTOP): 1,
 				(Duration.BRIEF): randomNumber(2, 3),
-				(Duration.TYPICAL): randomNumber(3, 6),
-				(Duration.MARATHON): randomNumber(8, 12)
+				(Duration.TYPICAL): randomNumber(3, 5),
+				(Duration.MARATHON): randomNumber(6, 8)
 			]
 			
 			Map categoriesStrategy = [
@@ -167,6 +167,8 @@ class Strategies {
 			List placesList = uniquePlaces.toList()
 			
 			Frolic frolic = new Frolic()
+			frolic.setCentreLon(lon)
+			frolic.setCentreLat(lat)
 			(0..maxResults).each {
 				frolic.addToPlace(popRandomFromList(placesList))
 			}
@@ -200,6 +202,9 @@ class Strategies {
 	}
 	
 	def popRandomFromList(List l) {
+		if (l.isEmpty()) {
+			return null
+		}
 		return l.remove(randomNumber(0, l.size() - 1))
 	}
 }

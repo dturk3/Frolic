@@ -6,6 +6,8 @@ class Place {
 	
 	String name
 	String address
+	String city
+	String country
 	String summary
 	double lon
 	double lat

@@ -19,6 +19,8 @@ class FrolicService {
 				place.setYelpId(business.id)
 				place.setName(business.name)
 				place.setSummary(business.snippet_text)
+				place.setCity(business.location?.city)
+				place.setCountry(business.location?.country_code)
 				place.setAddress(business.location?.display_address.join(" ").replace("\"", ""))
 				place.setLon(business.location?.coordinate?.longitude)
 				place.setLat(business.location?.coordinate?.latitude)
