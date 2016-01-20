@@ -31,7 +31,7 @@ public class YelpApi {
 		this.accessToken = new Token(TOKEN, TOKEN_SECRET);
 	}
 
-	public String searchForBusinessesByLocation(String term, String location, String lon, String lat, int radiusMetres, YelpSortMode sortMode, String categories) {
+	public String searchForBusinessesByLocation(String term, String location, String lon, String lat, int radiusMetres, YelpSortMode sortMode, String categories, int maxResults) {
 		final OAuthRequest request = createOAuthRequest(SEARCH_PATH);
 		if (!StringUtils.isBlank(term)) {
 			request.addQuerystringParameter("term", term);
@@ -42,8 +42,9 @@ public class YelpApi {
 		if (!StringUtils.isBlank(location)) {
 			request.addQuerystringParameter("location", location);
 		}
-		request.addQuerystringParameter("limit", String.valueOf(SEARCH_LIMIT));
 		request.addQuerystringParameter("radius_filter", String.valueOf(radiusMetres));
+		request.addQuerystringParameter("limit", String.valueOf(SEARCH_LIMIT));
+//		request.addQuerystringParameter("limit", String.valueOf(maxResults));
 		
 		if (sortMode != null) {
 			request.addQuerystringParameter("sort", String.valueOf(sortMode.getValue()));

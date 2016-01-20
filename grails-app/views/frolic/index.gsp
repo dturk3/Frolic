@@ -55,8 +55,9 @@
 				<ul class="nav navbar-nav">
 					<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
 					<li class="hidden"><a href="#page-top"></a></li>
+					<li><a class="page-scroll" href="#placeMap">MAP</a></li>
 					<li><a class="page-scroll" href="#places">PLACES</a></li>
-					<li><a class="page-scroll" href="#redo">REDO</a></li>
+					<li><a class="page-scroll" href="/Frolic/">REDO</a></li>
 					<li><a class="page-scroll" href="#share">SHARE</a></li>
 				</ul>
 			</div>
@@ -69,11 +70,13 @@
 
 	<header class="intro">
 		<div class="intro-body">
-			<div class="container">
-				<div class="row">
-				    <div id="map"></div>
+			<section id="placeMap" class="content-section text-center">
+				<div class="container">
+					<div class="row">
+						<div id="map"></div>
+					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 	</header>
 
@@ -107,7 +110,10 @@
 	             <div class="caption">
 	               <h6>${ it.name }</h6>
 	               <p style="font-size: 14px;">${ it.address }</p>
-	               <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+	               <p>
+		               <a href="#" class="btn btn-primary" role="button">Button</a> 
+		               <a href="#" class="btn btn-default" role="button">Button</a>
+	               </p>
 	             </div>
               </div>
 		  </div>
@@ -116,7 +122,7 @@
 	</section>
 
 	<!-- Download Section -->
-	<section id="redo" class="content-section text-center">
+	<section id="share" class="content-section text-center">
 		<div class="download-section">
 			<div class="container">
 				<div class="col-lg-8 col-lg-offset-2">
@@ -128,36 +134,6 @@
 				</div>
 			</div>
 		</div>
-	</section>
-
-	<!-- Contact Section -->
-	<section id="share" class="container content-section text-center">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
-				<h2>Contact Start Bootstrap</h2>
-				<p>Feel free to email us to provide some feedback on our
-					templates, give us suggestions for new templates and themes, or to
-					just say hello!</p>
-				<p>
-					<a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
-				</p>
-				<ul class="list-inline banner-social-buttons">
-					<li><a href="https://twitter.com/SBootstrap"
-						class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i>
-							<span class="network-name">Twitter</span></a></li>
-					<li><a
-						href="https://github.com/IronSummitMedia/startbootstrap"
-						class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i>
-							<span class="network-name">Github</span></a></li>
-					<li><a href="https://plus.google.com/+Startbootstrap/posts"
-						class="btn btn-default btn-lg"><i
-							class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<br>
-		<br>
 	</section>
 
 	<!-- Footer -->

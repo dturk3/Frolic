@@ -21,7 +21,6 @@ if (typeof jQuery !== 'undefined') {
 
 $('.btn-group-vertical button').click(function()
 {
-	console.log(this);
     $(this).parent().children().removeClass('active');
     $(this).addClass('active');
 });
@@ -262,7 +261,6 @@ function handleDirections() {
 		// $("#id-duration").html(duration.h + " h " + duration.m + " min");
 		if (status == google.maps.DirectionsStatus.OK) {
 			directionsDisplay.setDirections(response);
-			console.log(directionsDisplay);
 		}
 		
 		if (status == google.maps.DirectionsStatus.ZERO_RESULTS) {
@@ -279,13 +277,20 @@ function handleDirections() {
 			}
 		}
 		buildHighlights(points);
-		console.log(points);
 	});
 }
 
 $(document).ready(function() {
 	$(".navbar-toggle").click(function(event) {
 	    $(".navbar-collapse").toggle('in');
+	});
+	
+	$(".page-scroll").click(function(event) {
+	    $(".navbar-collapse").toggle('in');
+	});
+	
+	$(".row").click(function(event) {
+	    $(".navbar-collapse").hide();
 	});
 	
 	initMap();
@@ -306,7 +311,6 @@ $(document).ready(function() {
 					stopover : true
 				});
 			});
-			console.log(waypts);
 			handleDirections();
 			map.setCenter({
 				lat : parseFloat(response.centreLat),

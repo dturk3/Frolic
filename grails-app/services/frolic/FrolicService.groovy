@@ -10,7 +10,7 @@ class FrolicService {
 	final static YelpApi yelpApi = new YelpApi()
 
     def searchYelp(String term, String location, String lon, String lat, int radiusMetres, int maxResults, YelpSortMode sortMode, String categories) {
-		def yelpResult = JSON.parse(yelpApi.searchForBusinessesByLocation(term, location, lon, lat, radiusMetres, sortMode, categories))
+		def yelpResult = JSON.parse(yelpApi.searchForBusinessesByLocation(term, location, lon, lat, radiusMetres, sortMode, categories, maxResults))
 		def places = []
 		yelpResult.businesses.each { business ->
 			def existingPlace = Place.findByYelpId(business.id)

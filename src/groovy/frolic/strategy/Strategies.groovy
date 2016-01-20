@@ -16,6 +16,8 @@ class Strategies {
 	String location
 	String lon
 	String lat
+	
+	int attempts
 
 	Strategies(FrolicService frolicS, String locationParam, String lonParam, String latParam) {
 		rand = new Random()
@@ -24,6 +26,7 @@ class Strategies {
 		location = locationParam
 		lon = lonParam
 		lat = latParam
+		attempts = 0
 	}
 
 	FrolicStrategy DRINK = [
@@ -89,7 +92,7 @@ class Strategies {
 				(Duration.ONESTOP): 1,
 				(Duration.BRIEF): randomNumber(2, 3),
 				(Duration.TYPICAL): randomNumber(3, 5),
-				(Duration.MARATHON): randomNumber(6, 7)
+				(Duration.MARATHON): randomNumber(6, 8)
 			]
 			
 			Map categoriesStrategy = [
@@ -141,18 +144,21 @@ class Strategies {
 				],
 			]
 			
-			int numCategories = randomNumber(0, 2)
+			//int numCategories = randomNumber(0, 2)
+			int numCategories = 0
 			
 			List categoryList = []
-			(0..numCategories).each {
-				categoryList << popRandomFromList(categoriesStrategy.get(time))
+			if (numCategories > 0) {
+				(0..numCategories).each {
+					categoryList << popRandomFromList(categoriesStrategy.get(time))
+				}
 			}
 			
 			List sortStrategy = [YelpSortMode.DISTANCE, YelpSortMode.RELEVANCE, YelpSortMode.RATING]
 
 			int radius = radiusStrategy.get(distance)
 			String term = popRandomFromList(termsStrategy.get(time))
-			Integer maxResults = Math.max(durationStrategy.get(duration), 8)
+			Integer maxResults = durationStrategy.get(duration)
 			YelpSortMode sortOrder = popRandomFromList(sortStrategy) 
 			String categories = categoryList.join(",")
 
@@ -164,7 +170,20 @@ class Strategies {
 			
 			Set uniquePlaces = places.unique()
 			
-			List placesList = uniquePlaces.toList().subList(0, Math.max(Math.min(maxResults, 8), uniquePlaces.size()))
+			if (uniquePlaces == 0) {
+				if (attempts > 2) {
+					throw new IllegalStateException("Nothing to do here!")
+				}
+				attempts++ 
+				return DRINK.execute(time, duration, distance)
+			}
+			
+			//List placesList = uniquePlaces.toList().subList(0, Math.min(maxResults, uniquePlaces.size()))
+			List placesList = uniquePlaces.toList().subList(0, Math.min(maxResults, uniquePlaces.size()))
+			if (placesList.size() > 8) {
+				placesList = placesList.subList(0, 8);
+			}
+			//List placesList = uniquePlaces.toList()
 			
 			Frolic frolic = new Frolic()
 			frolic.setCentreLon(lon)
@@ -175,10 +194,12 @@ class Strategies {
 				return frolic
 			}
 			(1..maxResults).each {
-				def nextPlace = popRandomFromList(placesList)
-				if (nextPlace) {
-					frolic.addToPlace(nextPlace)
-					println "ADDED PLACE: " + nextPlace
+				if(placesList) {
+					def nextPlace = popRandomFromList(placesList)
+					if (nextPlace) {
+						frolic.addToPlace(nextPlace)
+						println "ADDED PLACE: " + nextPlace
+					}
 				}
 			}
 			frolic.save()
