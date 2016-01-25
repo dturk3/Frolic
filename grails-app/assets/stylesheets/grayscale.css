@@ -409,3 +409,16 @@ th {
 .gm-style-iw {
 	color: black;
 }
+
+.placeOrder {
+	color: lightgray;
+	position: absolute;
+    top: 10px;
+    left: 30px;
+}
+
+.placeInfoBox {
+	margin-top: -15px;
+	margin-bottom: 10px;
+	font-size: 12px;
+}

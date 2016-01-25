@@ -165,7 +165,7 @@ class Strategies {
 			println maxResults
 			List places = []			
 			(0..yelpCalls).each {
-				places.addAll(frolicService.searchYelp(term, location, lon, lat, radius, maxResults, sortOrder, categories))
+				places.addAll(frolicService.searchYelp(term, location, lon, lat, radius, 15, sortOrder, categories))
 			}
 			
 			Set uniquePlaces = places.unique()
@@ -179,11 +179,7 @@ class Strategies {
 			}
 			
 			//List placesList = uniquePlaces.toList().subList(0, Math.min(maxResults, uniquePlaces.size()))
-			List placesList = uniquePlaces.toList().subList(0, Math.min(maxResults, uniquePlaces.size()))
-			if (placesList.size() > 8) {
-				placesList = placesList.subList(0, 8);
-			}
-			//List placesList = uniquePlaces.toList()
+			List placesList = uniquePlaces.toList()
 			
 			Frolic frolic = new Frolic()
 			frolic.setCentreLon(lon)
@@ -193,15 +189,13 @@ class Strategies {
 				frolic.save()
 				return frolic
 			}
-			(1..maxResults).each {
-				if(placesList) {
-					def nextPlace = popRandomFromList(placesList)
-					if (nextPlace) {
-						frolic.addToPlace(nextPlace)
-						println "ADDED PLACE: " + nextPlace
-					}
+			(0..placesList.size()).each {
+				def nextPlace = popRandomFromList(placesList)
+				if (nextPlace) {
+					frolic.addToPlace(nextPlace)
 				}
 			}
+			frolic.setNumberOfPlaces(maxResults)
 			frolic.save()
 			return frolic
 		}

@@ -10,6 +10,7 @@ class Frolic {
 	String centreLon
 	String centreLat
 	String location
+	Integer numberOfPlaces
 	
 	List place
 	
@@ -20,6 +21,7 @@ class Frolic {
 		upvotes = 0
 		downvotes = 0
 		isPublic = true
+		numberOfPlaces = 0
 	}
 	
 	static hasMany = [place: Place]
@@ -32,5 +34,6 @@ class Frolic {
 		upvotes defaultValue: 0
 		downvotes defaultValue: 0
 		isPublic defaultValue: true
+		numberOfPlaces defaultValue: 0
 	}
 }

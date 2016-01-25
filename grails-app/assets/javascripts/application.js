@@ -201,9 +201,9 @@ function buildHighlights(points)
         }
         
         marker.infoWindow = new google.maps.InfoWindow({
-        	content: '<img style= "float: left; margin-right: 5px; margin-bottom: 5px; border: 1px solid black" src="' + frolicResponse.place[i].imageUrl + '"><h6 style="margin-bottom: 10px;">' + frolicResponse.place[i].name + '</h6>'
-	        	+ '<div style="font-size:12px">' + ratingString + '</div>'
-	        	+ '<div style="font-size:12px">' + phone + '<br>' + frolicResponse.place[i].address + '</div>'
+        	content: '<img style= "float: left; margin-right: 5px; margin-bottom: 5px; border: 1px solid black" src="' + frolicResponse.place[i].imageUrl + '"><h6 style="text-align: left; margin-bottom: 10px;">' + frolicResponse.place[i].name + '</h6>'
+	        	+ '<div style="text-align: left; font-size:12px">' + ratingString + '</div>'
+	        	+ '<div style="text-align: left; font-size:12px">' + phone + '<br>' + frolicResponse.place[i].address + '</div>'
         		+ ""
         });
         marker.setIcon('https://chart.googleapis.com/chart?chst=d_map_xpin_letter&chld=pin|' + (markers.length + 1) + '|42DCA3|000000');
@@ -225,6 +225,17 @@ function buildHighlights(points)
     		markers[i].infoWindow.close();
     	}
     });
+    
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var myPos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        console.log(myPos);
+        var marker = new google.maps.Marker({
+          position: myPos,
+          visible: true
+        });
+        marker.setIcon('https://chart.googleapis.com/chart?chst=d_map_spin&chld=d_map_spin&chld=1|0|00AFFF|12|b|me');
+        marker.setMap(map);
+    });
 }
 
 function handleDirections() {
@@ -240,34 +251,32 @@ function handleDirections() {
 		origin : start,
 		destination : end,
 		waypoints : stops,
-		optimizeWaypoints : true,
+		optimizeWaypoints : false,
 		provideRouteAlternatives : false,
 		travelMode : google.maps.TravelMode.WALKING
 	};
 	console.log(request);
-
+	
 	directionsService.route(request, function(response, status) {
 		var distanceMeters = 0;
 		var durationSeconds = 0;
 		console.log(status);
+		if (status == google.maps.DirectionsStatus.OK) {
+			directionsDisplay.setDirections(response);
+		}
+		
 		for (var i = 0; i < response.routes[0].legs.length; i++) {
 			var leg = response.routes[0].legs[i];
 			distanceMeters += leg.distance.value;
 			durationSeconds += leg.duration.value;
 		}
-		// $("#id-distance").html((distanceMeters/1000).toFixed(1) + " km");
 		var duration = secondsToTime(durationSeconds + (45 * 60)
 				* waypts.length);
-		// $("#id-duration").html(duration.h + " h " + duration.m + " min");
-		if (status == google.maps.DirectionsStatus.OK) {
-			directionsDisplay.setDirections(response);
-		}
 		
-		if (status == google.maps.DirectionsStatus.ZERO_RESULTS) {
-			window.location("/frolic/index");
-			return;
-		}
-
+//		if (status == google.maps.DirectionsStatus.ZERO_RESULTS) {
+//			window.location("/frolic/index");
+//			return;
+//		}
 
 		for (var i = 0; i < response.routes[0].legs.length; i++) {
 			var leg = response.routes[0].legs[i];
@@ -285,13 +294,14 @@ $(document).ready(function() {
 	    $(".navbar-collapse").toggle('in');
 	});
 	
-	$(".page-scroll").click(function(event) {
-	    $(".navbar-collapse").toggle('in');
-	});
+//	$(".page-scroll").click(function(event) {
+//	    $(".navbar-collapse").toggle('in');
+//	});
 	
-	$(".row").click(function(event) {
-	    $(".navbar-collapse").hide();
-	});
+//	$(".row").click(function(event) {
+//	    $(".navbar-collapse").hide();
+//	});
+//	
 	
 	initMap();
 	$.ajax({
@@ -304,12 +314,16 @@ $(document).ready(function() {
 			response = JSON.parse(response);
 			frolicResponse = response;
 			console.log(response);
+			var placeCount = 0;
 			$.each(response.place, function(index, place) {
-				$()
+				if (placeCount >= response.numberOfPlaces) {
+					return;
+				}
 				waypts.push({
-					location : place.name + " " + place.address,
+					location : place.lat + "," + place.lon,
 					stopover : true
 				});
+				placeCount++;
 			});
 			handleDirections();
 			map.setCenter({

@@ -98,9 +98,12 @@
 
 	<section id="places" class="container content-section text-center">
 		<div class="row" id="placesRow">
-	      <g:each in="${ frolic.place }">
+	      <g:each in="${ frolic.place.subList(0, frolic.numberOfPlaces) }">
 	      <div class="col-md-4">
                <div style="height: 300px" class="thumbnail">
+                 <div class="placeOrder">
+                    <h1>${ frolic.place.subList(0, frolic.numberOfPlaces).indexOf(it) + 1 }</h1>
+                 </div>
                  <g:if test="${ it.imageUrl }">
 		             <img style="border: 1px solid black" src="${ it.imageUrl }" alt="...">
                  </g:if>
@@ -108,11 +111,17 @@
                      <div style="height:100px"></div>
                  </g:else>
 	             <div class="caption">
-	               <h6>${ it.name }</h6>
-	               <p style="font-size: 14px;">${ it.address }</p>
+	               <h6>${ it.name }<br>
+	                   ${ it.hits }
+	                   <span style="color: #42DCA3; margin-left: -2px;" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                       ${ it.rating }
+                       <span style="color: #42DCA3; margin-left: -2px;" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                   </h6>
+	               <p class="placeInfoBox">${ it.address } (${ it.phone })</p>
 	               <p>
-		               <a href="#" class="btn btn-primary" role="button">Button</a> 
-		               <a href="#" class="btn btn-default" role="button">Button</a>
+		               <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon glyphicon-play" aria-hidden="true"></span> Start</a> 
+		               <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Swap</a>
+	                   <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span> Here</a>
 	               </p>
 	             </div>
               </div>

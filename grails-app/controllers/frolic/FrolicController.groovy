@@ -52,12 +52,13 @@ class FrolicController {
 		}
 		
 		Frolic frolic = Frolic.findByPermalink(params.permalink)
+		println "NUMBER PLACES: " + frolic.numberOfPlaces
+		println "PLACES: " + frolic.place
 		return [frolic: frolic]
 	}
 	
 	def get() {
 		Frolic frolic = Frolic.findByPermalink(params.permalink)
-		println frolic
 		return render(text: frolic as JSON)
 	}
 }
