@@ -289,6 +289,56 @@ function handleDirections() {
 	});
 }
 
+function upvotePlace(event, permalink, placeIndex) {
+	event.preventDefault();
+	$.ajax({
+		url : "/Frolic/frolic/upvote/",
+		type : "get",
+		data : {
+			permalink : permalink,
+			placeIdx : placeIndex
+		},
+		success : function(response) {
+			console.log(response);
+			var votes = parseInt(response.votes);
+			
+			var currentVotes = parseInt($("#upvotes-" + placeIndex).text());
+			$("#upvotes-" + placeIndex).text(currentVotes + votes);
+			return false;
+		},
+		error : function(xhr) {
+			//Do Something to handle error
+			return false;
+		}
+	});
+	return false;
+}
+
+function downvotePlace(event, permalink, placeIndex) {
+	event.preventDefault();
+	$.ajax({
+		url : "/Frolic/frolic/downvote/",
+		type : "get",
+		data : {
+			permalink : permalink,
+			placeIdx : placeIndex
+		},
+		success : function(response) {
+			console.log(response);
+			var votes = parseInt(response.votes);
+			
+			var currentVotes = parseInt($("#downvotes-" + placeIndex).text());
+			$("#downvotes-" + placeIndex).text(currentVotes + votes);
+			return false;
+		},
+		error : function(xhr) {
+			//Do Something to handle error
+			return false;
+		}
+	});
+	return false;
+}
+
 $(document).ready(function() {
 	$(".navbar-toggle").click(function(event) {
 	    $(".navbar-collapse").toggle('in');

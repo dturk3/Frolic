@@ -61,4 +61,106 @@ class FrolicController {
 		Frolic frolic = Frolic.findByPermalink(params.permalink)
 		return render(text: frolic as JSON)
 	}
+	
+	def start() {
+		Frolic frolic = Frolic.findByPermalink(params.permalink)
+		List reorderedPlaces = []
+		int placeIndex = Integer.valueOf(params.placeIdx)
+		reorderedPlaces << frolic.place[placeIndex]
+		frolic.place.remove(placeIndex)
+		reorderedPlaces.addAll(frolic.place)
+		frolic.place.clear()
+		frolic.place = reorderedPlaces
+		println frolic.place
+		frolic.save(flush: true, failOnError: true)
+		return redirect(url: "/frolic/index/?permalink=" + frolic.permalink)
+	}
+	
+	def swap() {
+		Frolic frolic = Frolic.findByPermalink(params.permalink)
+		List currentPlaces = []
+		currentPlaces.addAll(frolic.place.subList(0, frolic.numberOfPlaces))
+		List subPlaces = []
+		subPlaces.addAll(frolic.place.subList(frolic.numberOfPlaces, frolic.place.size()))
+		int placeIndex = Integer.valueOf(params.placeIdx)
+		def removedPlace = currentPlaces.remove(placeIndex)
+		def subPlace = subPlaces.pop()
+		currentPlaces.add(placeIndex, subPlace)
+		frolic.place.clear()
+		frolic.place.addAll(currentPlaces + subPlaces)
+		frolic.place << removedPlace
+		frolic.save(flush: true, failOnError: true)
+		return redirect(url: "/frolic/index/?permalink=" + frolic.permalink)
+	}
+	
+	def upvote() {
+		Frolic frolic = Frolic.findByPermalink(params.permalink)
+		String clientIp = request.getRemoteAddr()
+		if (!params.placeIdx) {
+			if (frolic.voter.contains(clientIp)) {
+				return render(contentType: 'text/json') {[
+					'votes': 0,
+					'type': "frolic"
+				]}
+			}
+			frolic.upvotes = frolic.upvotes + 1
+			frolic.voter << clientIp
+			frolic.save(flush: true, failOnError: true)
+				return render(contentType: 'text/json') {[
+					'votes': 1,
+					'type': "frolic"
+				]}		
+			}
+		int placeIndex = Integer.valueOf(params.placeIdx)
+		Place place = frolic.place.get(placeIndex)
+		if (place.voter.contains(clientIp)) {
+			def result = [votes: 0, type: "place"]
+			return render(contentType: 'text/json') {[
+				'votes': 0,
+				'type': "place"
+			]}
+		}
+		place.upvotes = place.upvotes + 1
+		place.voter << clientIp
+		place.save(flush: true, failOnError: true)
+		return render(contentType: 'text/json') {[
+			'votes': 1,
+			'type': "place"
+		]}
+	}
+	
+	def downvote() {
+		Frolic frolic = Frolic.findByPermalink(params.permalink)
+		String clientIp = request.getRemoteAddr()
+		if (!params.placeIdx) {
+			if (frolic.voter.contains(clientIp)) {
+				return render(contentType: 'text/json') {[
+					'votes': 0,
+					'type': "frolic"
+				]}
+			}
+			frolic.downvotes = frolic.downvotes + 1
+			frolic.voter << clientIp
+			frolic.save(flush: true, failOnError: true)
+				return render(contentType: 'text/json') {[
+					'votes': 1,
+					'type': "frolic"
+				]}
+		}
+		int placeIndex = Integer.valueOf(params.placeIdx)
+		Place place = frolic.place.get(placeIndex)
+		if (place.voter.contains(clientIp)) {
+			return render(contentType: 'text/json') {[
+				'votes': 0,
+				'type': "place"
+			]}
+		}
+		place.downvotes = place.downvotes + 1
+		place.voter << clientIp
+		place.save(flush: true, failOnError: true)
+		return render(contentType: 'text/json') {[
+			'votes': 1,
+			'type': "place"
+		]}
+	}
 }

@@ -116,12 +116,18 @@
 	                   <span style="color: #42DCA3; margin-left: -2px;" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
                        ${ it.rating }
                        <span style="color: #42DCA3; margin-left: -2px;" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                       <span id="upvotes-${ frolic.place.subList(0, frolic.numberOfPlaces).indexOf(it) }">${ it.upvotes }</span>                    
+                       <span style="color: #42DCA3; margin-left: -2px;" class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+                       <span id="downvotes-${ frolic.place.subList(0, frolic.numberOfPlaces).indexOf(it) }">${ it.downvotes }</span>                    
+                       <span style="color: #42DCA3; margin-left: -2px;" class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
                    </h6>
 	               <p class="placeInfoBox">${ it.address } (${ it.phone })</p>
 	               <p>
-		               <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon glyphicon-play" aria-hidden="true"></span> Start</a> 
-		               <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Swap</a>
-	                   <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span> Here</a>
+		               <a href="/Frolic/frolic/start/?permalink=${ frolic.permalink }&placeIdx=${ frolic.place.subList(0, frolic.numberOfPlaces).indexOf(it) }" style="font-size: 12px; margin-top: 5px;" class="btn btn-default" role="button"><span class="glyphicon glyphicon glyphicon-play" aria-hidden="true"></span> Start</a> 
+		               <a href="/Frolic/frolic/swap/?permalink=${ frolic.permalink }&placeIdx=${ frolic.place.subList(0, frolic.numberOfPlaces).indexOf(it) }" style="font-size: 12px; margin-top: 5px;" class="btn btn-default" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Swap</a>
+	                   <br>
+	                   <a href="#" onclick="upvotePlace(event, '${ frolic.permalink }', '${ frolic.place.subList(0, frolic.numberOfPlaces).indexOf(it) }'); return false;" style="font-size: 12px; margin-top: 5px;" class="btn btn-default" role="button"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span> Upvote</a>
+                       <a href="#" onclick="downvotePlace(event, '${ frolic.permalink }', '${ frolic.place.subList(0, frolic.numberOfPlaces).indexOf(it) }'); return false;" style="font-size: 12px; margin-top: 5px;" class="btn btn-default" role="button"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> Downvote</a>
 	               </p>
 	             </div>
               </div>
@@ -135,7 +141,8 @@
 		<div class="download-section">
 			<div class="container">
 				<div class="col-lg-8 col-lg-offset-2">
-					<h2>Download Grayscale</h2>
+					<h2>SHARE THIS FROLIC</h2>
+					<qrcode:url width="128"/>
 					<p>You can download Grayscale for free on the preview page at
 						Start Bootstrap.</p>
 					<a href="http://startbootstrap.com/template-overviews/grayscale/"
@@ -148,7 +155,7 @@
 	<!-- Footer -->
 	<footer>
 		<div class="container text-center">
-			<p>Copyright &copy; Your Website 2014</p>
+			<p style="font-size: 10px;">Copyright &copy; Let's Frolic! 2016</p>
 		</div>
 	</footer>
 

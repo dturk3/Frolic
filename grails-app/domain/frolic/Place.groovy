@@ -22,9 +22,11 @@ class Place {
 	int upvotes
 	int downvotes
 	
+	List voter
+	
 	List tags
 	
-	static hasMany = [tags: String]
+	static hasMany = [tags: String, voter: String]
 	
     static constraints = {
 		imageUrl blank: false, nullable: true

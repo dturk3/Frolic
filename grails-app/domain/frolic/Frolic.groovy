@@ -12,6 +12,8 @@ class Frolic {
 	String location
 	Integer numberOfPlaces
 	
+	List voter
+	
 	List place
 	
 	Frolic() {
@@ -24,7 +26,7 @@ class Frolic {
 		numberOfPlaces = 0
 	}
 	
-	static hasMany = [place: Place]
+	static hasMany = [place: Place, voter: String]
 
     static constraints = {
     }
