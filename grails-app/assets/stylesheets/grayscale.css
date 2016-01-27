@@ -338,6 +338,9 @@ ul.banner-social-buttons {
         margin-top: 528px;
     }
     
+    .appImage {
+        display: none; 
+    }
 }
 
 footer {
@@ -421,4 +424,12 @@ th {
 	margin-top: -15px;
 	margin-bottom: 10px;
 	font-size: 12px;
+}
+
+.appImage {
+	float: left;
+	width: 40%;
+	max-width: 243px;
+	margin-right: 10px;
+	margin-bottom: 15px;
 }

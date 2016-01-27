@@ -61,10 +61,10 @@
                         <a class="page-scroll" href="#about">GO</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#download">APP</a>
+                        <a class="page-scroll" href="#app">APP</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#download">API</a>
+                        <a class="page-scroll" href="#api">API</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">CONTACT</a>
@@ -188,12 +188,39 @@
         </div>
     </section>
 
-    <!-- Download Section -->
-    <section id="download" class="content-section text-center">
-        <div class="download-section">
+    <section id="app" class="content-section text-center">
+        <div class="app-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Download Grayscale</h2>
+                    <h2>Let's Frolic: The App!</h2>
+                    <asset:image class="appImage" src="app.png"/>
+                    <p style="text-align: left;"><br>Get excited! Frolic is coming to iOS and Android with new features in 2016.</p>
+					<dl style="">
+					  <h2 style="margin-top: 10px; margin-bottom: 5px;"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></h2>
+					  <dt>EVENT FROLIC</dt>
+					  <dd>Frolics can be event-oriented - sports matches, concerts, and shows will be making an appearance.</dd>
+					  <br>
+					  <h2 style="margin-top: 10px; margin-bottom: 5px;"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span></h2>
+					  <dt>SOCIAL FROLIC</dt>
+					  <dd>More sharing and browsing options will let you find the ultimate adventure.</dd>
+					  <h2 style="margin-top: 10px; margin-bottom: 5px;"><span class="glyphicon glyphicon-education" aria-hidden="true"></span></h2>
+                      <dt>SMART FROLIC</dt>
+                      <dd>Frolic recommends your adventure and finds ways to notify you about your plans before you need to think about them.</dd>
+					</dl>
+					<br><br>
+					<p>Want to keep informed?</p>
+					<i class="fa fa-facebook"></i>
+					<a href="https://www.facebook.com/letsfrolic" target="_blank" class="btn btn-default btn-lg">FOLLOW US ON FACEBOOK!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="api" class="content-section text-center">
+        <div class="api-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2></h2>
                     <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
                 </div>
@@ -227,7 +254,7 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; Your Website 2014</p>
+            <p style="font-size: 10px;">Copyright &copy; Let's Frolic! 2016</p>
         </div>
     </footer>
 
