@@ -104,12 +104,13 @@
                  <div class="placeOrder">
                     <h1>${ frolic.place.subList(0, frolic.numberOfPlaces).indexOf(it) + 1 }</h1>
                  </div>
-                 <g:if test="${ it.imageUrl }">
+                 <img style="border: 1px solid black" src="https://maps.googleapis.com/maps/api/streetview?size=200x100&location=${it.lat},${it.lon}&heading=151.78&pitch=-0.76&key=AIzaSyBPceR651kX-G401Wi-dloiOXOPCta1cvo">
+                 <!--  <g:if test="${ it.imageUrl }">
 		             <img style="border: 1px solid black" src="${ it.imageUrl }" alt="...">
                  </g:if>
                  <g:else>
                      <div style="height:100px"></div>
-                 </g:else>
+                 </g:else>-->
 	             <div class="caption">
 	               <h6>${ it.name }<br>
 	                   ${ it.hits }

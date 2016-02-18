@@ -135,11 +135,11 @@
 	                    <tr>
 	                        <td>
 		                        <div id="type" class="btn-group-vertical" role="group" aria-label="...">
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector active" value="surprise">SURPRISE!</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="drink">DRINK</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="eat">EAT</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="date">DATE</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="tourism">TOURISM</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="surprise" disabled>SURPRISE!</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector active" value="drink">DRINK</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="eat" disabled>EAT</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="date" disabled>DATE</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="tourism" disabled>TOURISM</button>
 				                </div>
 	                        </td>
 	                        <td>
@@ -194,7 +194,7 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Let's Frolic: The App!</h2>
                     <asset:image class="appImage" src="app.png"/>
-                    <p style="text-align: left;"><br>Get excited! Frolic is coming to iOS and Android with new features in 2016.</p>
+                    <p style="text-align: center;"><br>Get excited! Frolic is coming to iOS and Android with new features in 2016.</p>
 					<dl style="">
 					  <h2 style="margin-top: 10px; margin-bottom: 5px;"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></h2>
 					  <dt>EVENT FROLIC</dt>
@@ -220,8 +220,9 @@
         <div class="api-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2></h2>
-                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
+                    <h2>LET'S FROLIC: TOOLS AND API</h2>
+                    <p><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span><br><b>COMING SOON</b><br>Frolic let's you look at social trends and hot-spots. Businesses, developers, and planners can benefit from data browsing tools and APIs.</p>
+                    <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><br><b>HELP OUT</b><br>Frolic's new business tools will become more useful as more people use Frolic. Benefit everyone by promoting letsfrolic.com everywhere and anywhere!</p>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
                 </div>
             </div>
