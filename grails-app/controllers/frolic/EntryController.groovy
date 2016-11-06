@@ -9,6 +9,10 @@ class EntryController {
 			model: [city: "Toronto"])
 	}
 	
+	def join() {
+		return render(template: "join")
+	}
+	
 	def geolocate() {
 		if (params.newLocation) {
 			GeocodeResponse geocodeResponse = geocodeService.geocode(params.newLocation)
@@ -25,7 +29,7 @@ class EntryController {
 		
 		GeocodeResponse geocodeResponse = geocodeService.geocode(params.lat, params.lon)
 		println geocodeResponse
-		
+
 		return render(template: "geolocate",
 			model: [
 				city: geocodeResponse.city,

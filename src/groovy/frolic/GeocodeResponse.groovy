@@ -16,6 +16,9 @@ class GeocodeResponse {
 			if (component?.types?.contains("neighborhood")) {
 				neighbourhood = component.long_name
 			}
+			if (!neighbourhood) {
+				neighbourhood = "-"
+			}
 		}
 	}
 	@Override

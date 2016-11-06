@@ -1,6 +1,7 @@
 package frolic
 
 import java.text.Normalizer;
+import java.util.logging.Logger;
 
 class FrolicTagLib {
 //    static defaultEncodeAs = [taglib:'html']
@@ -26,14 +27,88 @@ class FrolicTagLib {
 		"""
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
 	
+	def CITY_LIST = [
+		"albuquerque",
+		"amsterdam",
+		"austin",
+		"baltimore",
+		"barcelona",
+		"boston",
+		"budapest",
+		"calgary",
+		"charlotte",
+		"chicago",
+		"cleveland",
+		"columbus",
+		"dallas",
+		"denver",
+		"detroit",
+		"edmonton",
+		"elpaso",
+		"florence",
+		"fortworth",
+		"halifax",
+		"hamilton",
+		"houston",
+		"indianapolis",
+		"jacksonville",
+		"kiev",
+		"lasvegas",
+		"laval",
+		"london",
+		"losangeles",
+		"memphis",
+		"miami",
+		"minneapolis",
+		"mississauga",
+		"montreal",
+		"nashville",
+		"neworleans",
+		"newyork",
+		"oklahomacity",
+		"ottawa",
+		"paris",
+		"philadelphia",
+		"phoenix",
+		"portland",
+		"prague",
+		"quebeccity",
+		"raleigh",
+		"regina",
+		"rome",
+		"sanantonio",
+		"sandiego",
+		"sanfrancisco",
+		"sanjose",
+		"santafe",
+		"saskatoon",
+		"seattle",
+		"st.john's",
+		"st.paul",
+		"surrey",
+		"tampa",
+		"toronto",
+		"vancouver",
+		"venice",
+		"washington",
+		"winnipeg"
+	]
+		
 	def cityIntro = { attrs ->
 		String city = attrs.city
 		String neighbourhodd = attrs.neighbourhood
 		
 		city = Normalizer.normalize(city, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "")
+		city = city.replace(" ", "").toLowerCase()
+
+		if (!(city in CITY_LIST)) {
+			city = "other"
+		}
 		
-		String imageFilename = city.replace(" ", "").toLowerCase() + ".jpg"
+		String imageFilename = city + ".jpg"
 		String url = resource(dir:'assets/city', file:imageFilename)
+		
+		
 		
 		out << String.format(CITY_INTRO_TEMPLATE, url)
 	}
