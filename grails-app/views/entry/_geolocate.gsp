@@ -60,9 +60,16 @@
                     <li>
                         <a class="page-scroll" href="#about">GO</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#signin">LOGIN</a>
-                    </li>
+                    <shiro:isNotLoggedIn>
+	                    <li>
+	                        <a class="page-scroll" href="#signin">LOGIN</a>
+	                    </li>
+                    </shiro:isNotLoggedIn>
+                    <shiro:isLoggedIn>
+	                    <li>
+	                        <g:link class="page-scroll" controller="auth" action="signOut">LOGOUT</g:link>
+	                    </li>
+                    </shiro:isLoggedIn>
                     <li>
                         <a class="page-scroll" href="#app">APP</a>
                     </li>
@@ -192,40 +199,46 @@
     </section>
     
     <!-- Login Section -->
-    <section id="signin" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Sign In</h2>
-                <p>Broadcast your location, and interact with fellow Frolickers.</p>
-                <p>Not a member? <a href="#">Join now!</a> It takes seconds.</p>
-                <div class="frolic-selector">
-                    <g:form controller="entry" action="login">
-                            <g:hiddenField name="lon" value="${ lon }" />
-                            <g:hiddenField name="lat" value="${ lat }" />
-                        
-                            <div class="input-group input-group-lg">
-                              <span class="input-group-addon" id="sizing-addon1">
-                                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                              </span>
-                              <input name="newLocation" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
-                            </div>
-                            <br>
-                            <div class="input-group input-group-lg">
-                              <span class="input-group-addon" id="sizing-addon1">
-                                  <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                              </span>
-                              <input name="newLocation" type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
-                            </div>
-                            <br><br>
-                            <button type="submit" class="btn btn-custom" aria-label="Fly" id="changeLocationButton">
-                                <div style="font-size: 18px;"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>&nbsp;&nbsp;Log In</div>
-                            </button>
-                </g:form>
-                <br><br><br><br>
-            </div>
-        </div>
-    </section>
-    
+    <shiro:isNotLoggedIn>
+	    <section id="signin" class="container content-section text-center">
+	        <div class="row">
+	            <div class="col-lg-8 col-lg-offset-2">
+	                <h2>Sign In</h2>
+	                <p>Broadcast your location, and interact with fellow Frolickers.</p>
+	                <p>Not a member? <a href="${createLink(uri:'/entry/join.gsp')}">Join now!</a> It takes seconds.</p>
+	                <div class="frolic-selector">
+						<g:if test="${flash.message}">
+						    <div class="inline-error">
+						        ${flash.message}
+						    </div>
+						</g:if>
+	                    <g:form controller="auth" action="signIn">
+	                            <g:hiddenField name="lon" value="${ lon }" />
+	                            <g:hiddenField name="lat" value="${ lat }" />
+	                            <g:hiddenField name="targetUri" value="${targetUri}" />
+	                            <div class="input-group input-group-lg">
+	                              <span class="input-group-addon" id="sizing-addon1">
+	                                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+	                              </span>
+	                              <input name="username" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+	                            </div>
+	                            <br>
+	                            <div class="input-group input-group-lg">
+	                              <span class="input-group-addon" id="sizing-addon1">
+	                                  <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+	                              </span>
+	                              <input name="password" type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
+	                            </div>
+	                            <br><br>
+	                            <button type="submit" class="btn btn-custom" aria-label="Fly" id="changeLocationButton">
+	                                <div style="font-size: 18px;"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>&nbsp;&nbsp;Log In</div>
+	                            </button>
+	                </g:form>
+	                <br><br><br><br>
+	            </div>
+	        </div>
+	    </section>
+    </shiro:isNotLoggedIn>
 
     <section id="app" class="content-section text-center">
         <div class="app-section" style="margin-top: -100px;">

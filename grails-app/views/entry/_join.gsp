@@ -99,6 +99,17 @@
                             <br>
                             <div class="input-group input-group-lg">
                               <span class="input-group-addon" id="sizing-addon1">
+                                  <span class="glyphicon glyphicon-check"aria-hidden="true"></span>
+                              </span>
+                                <select name="cars" class="form-control" aria-describedby="sizing-addon1">
+								  <option value="M">Male</option>
+								  <option value="F">Female</option>
+								  <option value="O">Other</option>
+								</select>
+                            </div>
+                            <br>
+                            <div class="input-group input-group-lg">
+                              <span class="input-group-addon" id="sizing-addon1">
                                   <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                               </span>
                               <input name="newLocation" type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">

@@ -41,7 +41,7 @@
 					data-target=".navbar-main-collapse">
 					<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
 				</button>
-				<a class="navbar-brand" href="#page-top"> <i
+				<a class="navbar-brand" href="${createLink(uri:'/')}"> <i
 					class="fa fa-play-circle"></i><span
 					class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>&nbsp;<span
 					class="light">LETS</span> FROLIC

@@ -116,6 +116,8 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 }
 
+//security.shiro.redirect.uri = "/entry/geolocate#signin"
+
 oauth {
 	providers {
 	}
