@@ -61,6 +61,9 @@
                         <a class="page-scroll" href="#about">GO</a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="#signin">LOGIN</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="#app">APP</a>
                     </li>
                     <li>
@@ -80,7 +83,7 @@
     <header class="intro">
         <div class="intro-body">
             <div class="container">
-                <div class="row">
+                <div class="row" >
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">${ city }</h1>
                         <h2 class="intro-text">${ neighbourhood }</h2>
@@ -97,7 +100,7 @@
 							</div>
 							<br>
 							<button type="submit" class="btn btn-custom" aria-label="Fly" id="changeLocationButton">
-								<span class="glyphicon glyphicon-plane" aria-hidden="true"></span>&nbsp;&nbsp;Change Location
+								<div style="font-size: 12px;"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span>&nbsp;&nbsp;Change Location</div>
 							</button>
 						</g:form>
                         
@@ -187,28 +190,63 @@
             </div>
         </div>
     </section>
+    
+    <!-- Login Section -->
+    <section id="signin" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Sign In</h2>
+                <p>Broadcast your location, and interact with fellow Frolickers.</p>
+                <p>Not a member? <a href="#">Join now!</a> It takes seconds.</p>
+                <div class="frolic-selector">
+                    <g:form controller="entry" action="login">
+                            <g:hiddenField name="lon" value="${ lon }" />
+                            <g:hiddenField name="lat" value="${ lat }" />
+                        
+                            <div class="input-group input-group-lg">
+                              <span class="input-group-addon" id="sizing-addon1">
+                                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                              </span>
+                              <input name="newLocation" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+                            </div>
+                            <br>
+                            <div class="input-group input-group-lg">
+                              <span class="input-group-addon" id="sizing-addon1">
+                                  <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                              </span>
+                              <input name="newLocation" type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
+                            </div>
+                            <br><br>
+                            <button type="submit" class="btn btn-custom" aria-label="Fly" id="changeLocationButton">
+                                <div style="font-size: 18px;"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>&nbsp;&nbsp;Log In</div>
+                            </button>
+                </g:form>
+                <br><br><br><br>
+            </div>
+        </div>
+    </section>
+    
 
     <section id="app" class="content-section text-center">
-        <div class="app-section">
+        <div class="app-section" style="margin-top: -100px;">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Let's Frolic: The App!</h2>
                     <asset:image class="appImage" src="app.png"/>
-                    <p style="text-align: center;"><br>Get excited! Frolic is coming to iOS and Android with new features in 2016.</p>
+                    <p style="text-align: center;">Frolic is coming to iOS and Android in 2017!</p>
 					<dl style="">
-					  <h2 style="margin-top: 10px; margin-bottom: 5px;"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></h2>
-					  <dt>EVENT FROLIC</dt>
+					  <h3 style="margin-top: 5px; margin-bottom: 5px;"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></h3>
+					  <dt><b>EVENT FROLIC</b></dt>
 					  <dd>Frolics can be event-oriented - sports matches, concerts, and shows will be making an appearance.</dd>
 					  <br>
-					  <h2 style="margin-top: 10px; margin-bottom: 5px;"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span></h2>
-					  <dt>SOCIAL FROLIC</dt>
-					  <dd>More sharing and browsing options will let you find the ultimate adventure.</dd>
-					  <h2 style="margin-top: 10px; margin-bottom: 5px;"><span class="glyphicon glyphicon-education" aria-hidden="true"></span></h2>
-                      <dt>SMART FROLIC</dt>
+					  <h3 style="margin-top: 5px; margin-bottom: 5px;"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span></h3>
+					  <dt><b>SOCIAL FROLIC</b></dt>
+					  <dd>Interact with your friends and other community members to find the ultimate adventure.</dd>
+					  <h3 style="margin-top: 5px; margin-bottom: 5px;"><span class="glyphicon glyphicon-education" aria-hidden="true"></span></h3>
+                      <dt><b>SMART FROLIC</b></dt>
                       <dd>Frolic recommends your adventure and finds ways to notify you about your plans before you need to think about them.</dd>
 					</dl>
-					<br><br>
-					<p>Want to keep informed?</p>
+					<br>
 					<i class="fa fa-facebook"></i>
 					<a href="https://www.facebook.com/letsfrolic" target="_blank" class="btn btn-default btn-lg">FOLLOW US ON FACEBOOK!</a>
                 </div>
@@ -221,9 +259,8 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>LET'S FROLIC: TOOLS AND API</h2>
-                    <p><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span><br><b>COMING SOON</b><br>Frolic let's you look at social trends and hot-spots. Businesses, developers, and planners can benefit from data browsing tools and APIs.</p>
+                    <p><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span><br><b>COMING SOON</b><br>Frolic lets you look at social trends and hot-spots. Businesses, developers, and planners can benefit from data browsing tools and APIs.</p>
                     <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><br><b>HELP OUT</b><br>Frolic's new business tools will become more useful as more people use Frolic. Benefit everyone by promoting letsfrolic.com everywhere and anywhere!</p>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
                 </div>
             </div>
         </div>
@@ -233,7 +270,7 @@
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact Start Bootstrap</h2>
+                <!--  <h2>Contact Start Bootstrap</h2>
                 <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
                 <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
                 </p>
@@ -247,7 +284,7 @@
                     <li>
                         <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
                     </li>
-                </ul>
+                </ul>-->
             </div>
         </div>
     </section>
@@ -258,6 +295,17 @@
             <p style="font-size: 10px;">Copyright &copy; Let's Frolic! 2016</p>
         </div>
     </footer>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', 'UA-50106353-1', 'auto');
+	  ga('send', 'pageview');
+	
+	</script>
 
     <!-- jQuery -->
     <asset:javascript src="jquery.js"/>

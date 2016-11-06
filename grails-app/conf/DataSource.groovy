@@ -1,9 +1,9 @@
 dataSource {
-    pooled = true
+	pooled = true
+	driverClassName = "org.postgresql.Driver"
     jmxExport = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+    username = "frolic"
+    password = "frolic"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -18,20 +18,26 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            dbCreate = "update"
+            url = "jdbc:postgresql://127.0.0.1:5432/frolic"
+            username = "frolic"
+            password = "frolic"
         }
     }
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url = "jdbc:postgresql://127.0.0.1:5432/frolic"
+            username = "frolic"
+            password = "frolic"
         }
     }
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url = "jdbc:postgresql://127.0.0.1:5432/frolic"
+            username = "frolic"
+            password = "frolic"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true

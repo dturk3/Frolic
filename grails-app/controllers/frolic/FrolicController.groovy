@@ -48,7 +48,10 @@ class FrolicController {
 			
 			def frolic = strategy.execute(time, duration, distance)
 			frolic.save(flush: true, failOnError: true)
-			return redirect(url: "/frolic/index/?permalink=" + frolic.permalink)
+			return redirect(controller: "frolic",
+				action: "index",
+				params: [permalink: frolic.permalink]
+			)
 		}
 		
 		Frolic frolic = Frolic.findByPermalink(params.permalink)
@@ -73,7 +76,10 @@ class FrolicController {
 		frolic.place = reorderedPlaces
 		println frolic.place
 		frolic.save(flush: true, failOnError: true)
-		return redirect(url: "/frolic/index/?permalink=" + frolic.permalink)
+		return redirect(controller: "frolic",
+			action: "index",
+			params: [permalink: frolic.permalink]
+		)
 	}
 	
 	def swap() {

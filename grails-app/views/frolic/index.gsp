@@ -144,10 +144,6 @@
 				<div class="col-lg-8 col-lg-offset-2">
 					<h2>SHARE THIS FROLIC</h2>
 					<qrcode:url width="128"/>
-					<p>You can download Grayscale for free on the preview page at
-						Start Bootstrap.</p>
-					<a href="http://startbootstrap.com/template-overviews/grayscale/"
-						class="btn btn-default btn-lg">Visit Download Page</a>
 				</div>
 			</div>
 		</div>
@@ -159,6 +155,17 @@
 			<p style="font-size: 10px;">Copyright &copy; Let's Frolic! 2016</p>
 		</div>
 	</footer>
+		
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', 'UA-50106353-1', 'auto');
+	  ga('send', 'pageview');
+	
+	</script>
 
 	<!-- jQuery -->
 	<asset:javascript src="jquery.js" />
