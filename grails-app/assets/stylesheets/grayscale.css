@@ -467,3 +467,11 @@ th {
   background: #ffecec url('http://www.html5accessibility.com/images/cross.png') no-repeat 10px 50%;
   border: 2px solid #f5aca6;
 }
+
+.greeting {
+	font-size: 10px;
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin-left: 15px;
+	margin-top: -6px;
+	text-transform: lowercase;
+}

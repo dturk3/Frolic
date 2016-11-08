@@ -46,6 +46,9 @@
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
                     <i class="fa fa-play-circle"></i><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>&nbsp;<span class="light">LETS</span> FROLIC
+	                <shiro:isLoggedIn>
+                        <div class="greeting">Hey, <u><user:loggedInUser property="username"/></u>. What's up?</div>
+                    </shiro:isLoggedIn>
                 </a>
             </div>
 
@@ -239,6 +242,9 @@
 	        </div>
 	    </section>
     </shiro:isNotLoggedIn>
+    <shiro:isLoggedIn>
+        <br><br><br><br>
+    </shiro:isLoggedIn>
 
     <section id="app" class="content-section text-center">
         <div class="app-section" style="margin-top: -100px;">
