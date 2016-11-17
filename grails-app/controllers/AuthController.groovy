@@ -64,7 +64,12 @@ class AuthController {
             }
 
             // Now redirect back to the login page.
-            redirect(uri: "/entry/geolocate?targetUri=" + URLEncoder.encode(params.targetUri) + "#signin")
+			if (params.targetUri) {
+				redirect(uri: "/entry/geolocate?targetUri=" + URLEncoder.encode(params.targetUri) + "#signin")
+			}
+			else {
+				redirect(uri: "/entry/geolocate#signin")
+			}
         }
     }
 

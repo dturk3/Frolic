@@ -4,23 +4,15 @@
  */
 class ShiroSecurityFilters {
     def filters = {
-		live(uri: "/frolic/**") {
-			 before = {
-				 // Ignore direct views (e.g. the default main index page).
-				 if (!controllerName) return true
- 
-				 // Access control by convention.
-				 accessControl()
-			 }
-		 }
-        all(uri: "/**") {
-            before = {
-                // Ignore direct views (e.g. the default main index page).
-                if (!controllerName) return true
-
-                // Access control by convention.
-                //accessControl()
-            }
-        }
+//        all(uri: "/**") {
+//            before = {
+//                // Ignore direct views (e.g. the default main index page).
+//                if (!controllerName) return true
+//				
+//				return true
+//                // Access control by convention.
+//                //accessControl()
+//            }
+//        }
     }
 }

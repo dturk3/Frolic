@@ -387,3 +387,14 @@ $(document).ready(function() {
 		}
 	});
 });
+
+function selectFrolic() {
+	setTimeout(function() {
+		$("#about").removeClass (function (index, css) {
+		   return (css.match (/frolic-.+\S+/g) || []).join(' ');
+		});
+		$("#about").fadeOut(550, function(){
+            $('#about').addClass('frolic-' + $('button[class*="active"]')[0].attributes.value.nodeValue).fadeIn(550)
+        });
+	}, 1000);
+}

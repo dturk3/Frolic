@@ -124,7 +124,7 @@
     </header>
 
     <!-- About Section -->
-    <section id="about" class="container content-section text-center">
+    <section id="about" class="container content-section text-center frolic-drink">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Go Frolic!</h2>
@@ -148,11 +148,11 @@
 	                    <tr>
 	                        <td>
 		                        <div id="type" class="btn-group-vertical" role="group" aria-label="...">
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="surprise" disabled>SURPRISE!</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector active" value="drink">DRINK</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="eat" disabled>EAT</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="date" disabled>DATE</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="tourism" disabled>TOURISM</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="surprise" onmouseup="selectFrolic()" disabled>SURPRISE!</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector active" value="drink" onmouseup="selectFrolic()">DRINK</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="eat" onmouseup="selectFrolic()" disabled>EAT</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="date" onmouseup="selectFrolic()">DATE</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="tourism" onmouseup="selectFrolic()" disabled>TOURISM</button>
 				                </div>
 	                        </td>
 	                        <td>
