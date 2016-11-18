@@ -150,7 +150,7 @@
 		                        <div id="type" class="btn-group-vertical" role="group" aria-label="...">
 				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="surprise" onmouseup="selectFrolic()" disabled>SURPRISE!</button>
 				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector active" value="drink" onmouseup="selectFrolic()">DRINK</button>
-				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="eat" onmouseup="selectFrolic()">EAT</button>
+				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="eat" onmouseup="selectFrolic()" disabled>EAT</button>
 				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="date" onmouseup="selectFrolic()">DATE</button>
 				                    <button style="width: 120px" type="button" class="btn btn-default btn-selector" value="tourism" onmouseup="selectFrolic()" disabled>TOURISM</button>
 				                </div>

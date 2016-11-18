@@ -88,7 +88,7 @@
 	<br>
     <br>
     <br>
-	<section id="empty" class="container content-section text-center">
+	<section id="empty" class="container content-section text-center frolic-${frolic.type}">
         <h2>NEAR ${ frolic.location }</h2>
         <br>
         <br>

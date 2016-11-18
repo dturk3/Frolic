@@ -29,9 +29,9 @@ class Place {
 	static hasMany = [tags: String, voter: String]
 	
     static constraints = {
-		imageUrl blank: false, nullable: true
-		link blank: false, nullable: true
-		phone blank: false, nullable: true
+		imageUrl blank: true, nullable: true
+		link blank: true, nullable: true
+		phone blank: true, nullable: true
     }
 	
 	static mapping = {

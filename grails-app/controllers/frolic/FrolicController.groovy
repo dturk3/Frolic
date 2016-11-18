@@ -13,7 +13,7 @@ class FrolicController {
     def index() { 
 		if (!params.permalink) {
 			Strategies strategies = new Strategies(frolicService, params.location, params.lon, params.lat)
-			
+			println "TYPE: " + params.type
 			TimeOfDay time = [
 				"now": TimeOfDay.EVENING,
 				"morning": TimeOfDay.MORNING,
@@ -42,7 +42,7 @@ class FrolicController {
 				"surprise": strategies.DRINK,
 				"drink": strategies.DRINK,
 				"eat": strategies.DRINK,
-				"date": strategies.DRINK,
+				"date": strategies.DATE,
 				"tourism": strategies.DRINK
 			].get(params.type)
 			

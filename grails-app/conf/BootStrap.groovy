@@ -1,4 +1,6 @@
 import org.apache.shiro.crypto.hash.Sha256Hash
+import org.hibernate.engine.spi.BatchFetchQueue;
+import org.hibernate.engine.spi.EntityKey
 
 class BootStrap {
 
@@ -14,6 +16,11 @@ class BootStrap {
 		)
 		user.addToPermissions("*:*")
 		user.save()
+		
+		def oldRemoveBatchLoadableEntityKey = BatchFetchQueue.metaClass.&removeBatchLoadableEntityKey
+		BatchFetchQueue.metaClass.removeBatchLoadableEntityKey = { EntityKey key ->
+			return key ? oldRemoveBatchLoadableEntityKey.invoke(key) : null
+		}
     }
     def destroy = {
     }

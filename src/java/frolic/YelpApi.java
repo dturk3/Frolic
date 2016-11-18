@@ -50,7 +50,7 @@ public class YelpApi {
 			request.addQuerystringParameter("sort", String.valueOf(sortMode.getValue()));
 		}
 		if (!StringUtils.isBlank(categories)) {
-			request.addQuerystringParameter("categories", categories);
+			request.addQuerystringParameter("category_filter", categories);
 		}
 		return sendRequestAndGetResponse(request);
 	}

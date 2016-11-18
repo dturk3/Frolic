@@ -6,6 +6,7 @@ import org.apache.shiro.authc.UsernamePasswordToken
 import org.apache.shiro.crypto.hash.Sha256Hash
 import org.apache.shiro.web.util.SavedRequest
 import org.apache.shiro.web.util.WebUtils
+import org.yaml.snakeyaml.util.UriEncoder;
 
 class AuthController {
     def shiroSecurityManager
@@ -14,7 +15,7 @@ class AuthController {
 
     def login = {
 		// Slight hack to get around issue of anchors not being preserved in security redirects
-		redirect(uri: "/entry/geolocate?targetUri=" + URLEncoder.encode(params.targetUri) + "#signin")
+		redirect(uri: "/entry/geolocate?targetUri=" + UriEncoder.encode(params.targetUri) + "#signin")
     }
 
     def signIn = {
@@ -65,7 +66,7 @@ class AuthController {
 
             // Now redirect back to the login page.
 			if (params.targetUri) {
-				redirect(uri: "/entry/geolocate?targetUri=" + URLEncoder.encode(params.targetUri) + "#signin")
+				redirect(uri: "/entry/geolocate?targetUri=" + UriEncoder.encode(params.targetUri) + "#signin")
 			}
 			else {
 				redirect(uri: "/entry/geolocate#signin")
@@ -143,7 +144,7 @@ class AuthController {
 			params.password = ''
 			params.confirmPassword = ''
 			// TODO - dirty
-			redirect(uri: "/entry/join\\?" + (params.collect { k,v -> "$k=${URLEncoder.encode(v)}" }.join('&') + "#join-top"))
+			redirect(uri: "/entry/join\\?" + (params.collect { k,v -> "$k=${UriEncoder.encode(v)}" }.join('&') + "#join-top"))
 			return
 		}
 				

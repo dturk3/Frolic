@@ -390,12 +390,12 @@ $(document).ready(function() {
 
 function selectFrolic() {
 	setTimeout(function() {
-		$(".content-section").fadeOut(550, function(){
+		$(".content-section").fadeOut(250, function(){
 			$("#about").removeClass (function (index, css) {
 				return (css.match (/frolic-.+\S+/g) || []).join(' ');
 			});
             $('#about').addClass('frolic-' + $('button[class*="active"]')[0].attributes.value.nodeValue);
-            $('.content-section').fadeIn(550)
+            $('.content-section').fadeIn(250)
         });
-	}, 1000);
+	}, 500);
 }

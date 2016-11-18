@@ -11,6 +11,7 @@ class Frolic {
 	String centreLat
 	String location
 	Integer numberOfPlaces
+	String type
 	
 	List voter
 	
@@ -29,6 +30,7 @@ class Frolic {
 	static hasMany = [place: Place, voter: String]
 
     static constraints = {
+		type blank: true, nullable: true
     }
 	
 	static mapping = {
