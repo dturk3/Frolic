@@ -8,6 +8,8 @@ class ShiroUser {
 	String email
 	String city
 	String gender
+	
+	String avatarName
     
     static hasMany = [ roles: ShiroRole, permissions: String ]
 
@@ -18,5 +20,6 @@ class ShiroUser {
 		email(nullable: false, blank: false, unique: true)
 		city(nullable: false, blank: false)
 		gender(nullable: false, blank: false, inList: ['M', 'F', 'O'] as List)
+		avatarName(nullable: true, blank: true)
     }
 }

@@ -64,11 +64,11 @@
 					Join Frolic to take advantage of some of our <br> coolest
 					features. Check back for updates regularly.
 				<div style="font-size: 18px;">
-					<asset:image style="border: 1px solid white; margin: 5px"
+					<asset:image style="border: 1px solid white; margin: 5px; width: 290px;"
 						src="frolic-feature-1.png" />
-					<asset:image style="border: 1px solid white; margin: 5px"
+					<asset:image style="border: 1px solid white; margin: 5px; width: 290px;"
 						src="frolic-feature-2.png" />
-					<asset:image style="border: 1px solid white; margin: 5px"
+					<asset:image style="border: 1px solid white; margin: 5px; width: 290px;"
 						src="frolic-feature-3.png" />
 					<br> <a id="join-top"></a> <br> Join for FREE today. <br>Be
 					part of something exciting in your city, and elsewhere!<br> <br>

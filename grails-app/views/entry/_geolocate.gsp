@@ -243,7 +243,9 @@
 	    </section>
     </shiro:isNotLoggedIn>
     <shiro:isLoggedIn>
-        <br><br><br><br>
+        <br><br>
+        <div class="countdown" data-role="countdown" data-days="2"></div>
+        <br><br>
     </shiro:isLoggedIn>
 
     <section id="app" class="content-section text-center">
@@ -340,7 +342,7 @@
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPceR651kX-G401Wi-dloiOXOPCta1cvo"></script>
     
-    <asset:javascript src="application.js"/>
+    <asset:javascript src="application.js"/>ro.js"></script>
     
     <script>
 	    $("button").click(function() {

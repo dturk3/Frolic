@@ -12,6 +12,7 @@ class Frolic {
 	String location
 	Integer numberOfPlaces
 	String type
+	frolic.ShiroUser creator
 	
 	List voter
 	
@@ -28,9 +29,10 @@ class Frolic {
 	}
 	
 	static hasMany = [place: Place, voter: String]
-
+	
     static constraints = {
 		type blank: true, nullable: true
+		creator blank: true, nullable: true
     }
 	
 	static mapping = {

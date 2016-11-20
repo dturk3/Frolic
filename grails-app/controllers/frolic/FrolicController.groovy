@@ -169,4 +169,13 @@ class FrolicController {
 			'type': "place"
 		]}
 	}
+	
+	def menu() {
+		return []
+	}
+	
+	def live() {
+		println "Live"
+		return []
+	}
 }
