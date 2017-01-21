@@ -43,7 +43,7 @@ function setCurrentPosition(pos) {
             pos.coords.latitude,
             pos.coords.longitude
         ),
-        icon: "../assets/avatars/male-1.png",
+        icon: "../assets/avatars/m-1.png",
         title: "ME"
     });
     map.panTo(new google.maps.LatLng(

@@ -124,12 +124,33 @@
 							<span class="input-group-addon" id="sizing-addon1"> <span
 								class="glyphicon glyphicon-check" aria-hidden="true"></span>
 							</span> <select name="gender" class="form-control"
-								aria-describedby="sizing-addon1">
+								aria-describedby="sizing-addon1" onchange="updateAvatars(this.value)">
 								<option value="M">Male</option>
 								<option value="F">Female</option>
-								<option value="O">Other</option>
 							</select>
 						</div>
+						<br><br>
+						<h5>select your avatar for Frolic Live</h5>
+						<div id="avatar-select" class="btn-group-horizontal" role="group" aria-label="...">
+                            <div id="male-avatars">
+                               <button style="width: 64px; height: 64px;" type="button" class="btn btn-default btn-selector active" value="1">
+                                        <asset:image id="male-1" style="width: 32px; height: 32px;" src="avatars/m-1.png" />
+                                </button>
+	                            <g:each var="i" in="${ (2..<15) }">
+							        <button id="female-${i}" style="width: 64px; height: 64px;" type="button" class="btn btn-default btn-selector" value="${i}">
+	                                    <asset:image id="male-${i}" style="width: 32px; height: 32px;" src="avatars/m-${i}.png" />
+	                                </button>
+							    </g:each>
+							</div>
+						    <div id="female-avatars" style="display: none;">
+							    <g:each var="i" in="${ (1..<15) }">
+	                                <button id="female-${i}" style="width: 64px; height: 64px;" type="button" class="btn btn-default btn-selector" value="${i}">
+	                                    <asset:image id="female-${i}" style="width: 32px; height: 32px;" src="avatars/f-${i}.png" />
+	                                </button>
+	                            </g:each>
+                            </div>
+                            <g:hiddenField id="avatar" name="avatar" value="1" />
+                        </div>
 						<br>
 						<div class="input-group input-group-lg">
 							<span class="input-group-addon" id="sizing-addon1"> <span

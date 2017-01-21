@@ -25,6 +25,30 @@ $('.btn-group-vertical button').click(function()
     $(this).addClass('active');
 });
 
+$('.btn-group-horizontal button').click(function()
+{
+    $(this).parent().children().removeClass('active');
+    $(this).addClass('active');
+    var avatarId = $(this).attr('id').split('-');
+    $('#avatar').attr('value', avatarId[avatarId.length-1]);
+});
+
+function updateAvatars(val)
+{
+	if (val == 'M') {
+		$('#male-avatars').show();
+		$('#female-avatars').hide();
+		$('#male-1').click();
+		return;
+	}
+	if (val == 'F') {
+		$('#female-avatars').show();
+		$('#male-avatars').hide();
+		$('#female-1').click();
+		return;
+	}
+}
+
 function getParameter(sParam)
 {
     var sPageURL = window.location.search.substring(1);

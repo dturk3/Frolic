@@ -144,7 +144,7 @@ class AuthController {
 			params.password = ''
 			params.confirmPassword = ''
 			// TODO - dirty
-			redirect(uri: "/entry/join\\?" + (params.collect { k,v -> "$k=${UriEncoder.encode(v)}" }.join('&') + "#join-top"))
+			redirect(uri: "/entry/join\\?" + (params.collect { k,v -> "$k=${URLEncoder.encode(v)}" }.join('&') + "#join-top"))
 			return
 		}
 				
@@ -155,7 +155,8 @@ class AuthController {
 			gender: params.gender,
 			displayName: params.displayName,
 			name: params.displayName,
-			city: params.city
+			city: params.city,
+			avatar: Integer.parseInt(params.avatar)
 		)
 		user.addToPermissions("*:*")
 		user.save()

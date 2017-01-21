@@ -342,7 +342,7 @@
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPceR651kX-G401Wi-dloiOXOPCta1cvo"></script>
     
-    <asset:javascript src="application.js"/>ro.js"></script>
+    <asset:javascript src="application.js"/></script>
     
     <script>
 	    $("button").click(function() {
