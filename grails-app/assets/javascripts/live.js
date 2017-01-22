@@ -33,17 +33,27 @@ function getParameter(sParam) {
 var map;
 var myPosition;
 
+var context;
+
+function loadContext() {
+	
+}
+
 function setCurrentPosition(pos) {
 	if (myPosition) {
 		myPosition.setMap(null);
 	}
+	var myIcon = {
+	    url: "../assets/avatars/m-1.png", // url
+	    scaledSize: new google.maps.Size(32, 32) // scaled size
+	};
 	myPosition = new google.maps.Marker({
         map: map,
         position: new google.maps.LatLng(
             pos.coords.latitude,
             pos.coords.longitude
         ),
-        icon: "../assets/avatars/m-1.png",
+        icon: myIcon,
         title: "ME"
     });
     map.panTo(new google.maps.LatLng(
