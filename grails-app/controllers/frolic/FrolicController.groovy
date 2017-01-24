@@ -1,5 +1,7 @@
 package frolic
 
+import org.apache.shiro.SecurityUtils;
+
 import frolic.parameter.Distance
 import frolic.parameter.Duration
 import frolic.parameter.TimeOfDay
@@ -47,6 +49,9 @@ class FrolicController {
 			].get(params.type)
 			
 			def frolic = strategy.execute(time, duration, distance)
+			def userName  = SecurityUtils.subject?.principal
+			def user = ShiroUser.findByUsername(userName)
+			frolic.setCreator(user)
 			frolic.save(flush: true, failOnError: true)
 			return redirect(controller: "frolic",
 				action: "index",
